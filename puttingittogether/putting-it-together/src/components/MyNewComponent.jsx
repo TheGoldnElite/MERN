@@ -1,4 +1,4 @@
-const First=props => {
+const PersonCard=props => {
 
 
     const {firstName,lastName,age,hairColor}=props;
