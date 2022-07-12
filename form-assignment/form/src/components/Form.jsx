@@ -8,6 +8,7 @@ const Form = props => {
     const [LastName,setLastName] = useState("");
     const [Email,setEmail] = useState("");
     const [Password,setPassword] = useState("");
+    const [ConfirmPassword,setConfirmPassword] = useState("");
 
     const [canRender,setCanRender] = useState(false);
 
@@ -22,6 +23,13 @@ const Form = props => {
     //create a method
     const TextValid = input => {
         if(input.length < 2){
+            return false;
+        }
+        return true;
+    }
+
+    const PasswordMatch = () => {
+        if (Password !== ConfirmPassword){
             return false;
         }
         return true;
@@ -49,12 +57,13 @@ const Form = props => {
                     <label htmlFor="Password">Password:</label>
                     <input type="text" name="Password" id="Password" onChange={e => setPassword(e.target.value)}/>
                     {TextValid(Password) ? "" :<p>Password must be at least 2 characters</p>}
+                    {PasswordMatch(Password) ? "" :<p>Passwords must match</p>}
                 </div>
                 <div>
-                    <label htmlFor="Password">Confirm Password:</label>
-                    <input type="text" name="Password" id="Password" onChange={e => setPassword(e.target.value)}/>
-                    {TextValid(Password) ? "" :<p>Passwords must match</p>}
-                    {TextValid(Password) ? "" :<p>Password must be at least 2 characters</p>}
+                    <label htmlFor="ConfirmPassword">Confirm Password:</label>
+                    <input type="text" name="ConfirmPassword" id="ConfirmPassword" onChange={e => setConfirmPassword(e.target.value)}/>
+                    {PasswordMatch(ConfirmPassword) ? "" :<p>Passwords must match</p>}
+                    {TextValid(ConfirmPassword) ? "" :<p>Password must be at least 2 characters</p>}
                 </div>
             </form>
             <input type="submit" value="Submit"/>
@@ -67,19 +76,18 @@ const Form = props => {
                     <h2>Last Name: {LastName}</h2>
                     <h2>Email: {Email}</h2>
                     <h2>Password: {Password}</h2>
-                    <h2>Confirm Password:{Password}</h2>
+                    <h2>Confirm Password:{ConfirmPassword}</h2>
                 </div>: ""
             }
-
-        
-            <div >
-                <h1>Your Form Data</h1>
-                <h2>First Name: {firstName}</h2>
-                <h2>Last Name: {LastName}</h2>
-                <h2>Email: {Email}</h2>
-                <h2>Password: {Password}</h2>
-                <h2>Confirm Password:{Password}</h2>
+            <div>
+            <h1>Your Form Data</h1>
+                    <h2>First Name: {firstName}</h2>
+                    <h2>Last Name: {LastName}</h2>
+                    <h2>Email: {Email}</h2>
+                    <h2>Password: {Password}</h2>
+                    <h2>Confirm Password:{ConfirmPassword}</h2>
             </div>
+
         </div>
     );
 }
