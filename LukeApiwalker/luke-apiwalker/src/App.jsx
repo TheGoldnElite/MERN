@@ -1,8 +1,8 @@
-import logo from './logo.svg';
+
 import './App.css';
 import Home from './components/Home';
 import People from './components/People';
-import Planet from './components/Planet';
+import Planets from './components/Planet';
 import { Routes,Route} from 'react-router-dom';
 
 function App() {
@@ -10,9 +10,10 @@ function App() {
     <div className="App">
       <h1>Luke Apiwalker</h1>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/People/:people" element={<People />} />
-        <Route path="/Planet/:planet" element={<Planet />} />
+        <Route path="/Home" element={<Home />} />
+        <Route path="/People/:id" element={<People />} />
+        <Route path="/Planets/:id" element={<Planets/>} />
+        
       </Routes>
     </div>
   );

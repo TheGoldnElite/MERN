@@ -4,38 +4,37 @@ import  {useState} from 'react';
 
 
 
-const People = props => {
-    const [starWars,setStarWars] = useState(null);
-    const [inputStarWars,setInputStarWars] = useState();
+function People ({id}) {
+    const [people,setPeople] = useState(null);
+    
     //const {people} = useParams();
     
 
     useEffect(() =>{
         //axios gets the data
-        axios.get("https://swapi.dev/api/people/" + starWars)
+        axios.get("https://swapi.dev/api/people/" + id + "/" )
         //then what to do after it gets the data,function
-        .then(res => setStarWars(res.data))
+        .then(res => setPeople(res.data));
+    
         
-    },[starWars])
+    },[id])
 
-    const search = e => {
-        e.preventDefault();
-        
-        setStarWars(inputStarWars);
+    if (people == null){
+        return "Loading.";
     }
+    
     
     
     return(
         <div>
             <h1>Luke Apiwalker</h1>
+            <h1>People page</h1>
             
-            <input type="number" name="newStarWars" onChange={(e)=>setInputStarWars(e.target.value)}/>
-            <input type="submit" value="search" onclick={search}/>
 
-            <h1>Star Wars character: {starWars.name}</h1>
-            <h1>Height: {starWars.height}</h1>
-            <h1>Hair Color: {starWars.hair_color}</h1>
-            <h1>Skin Color: {starWars.skin_color}</h1>
+            <h1>Star Wars character: {people.name}</h1>
+            <h1>Height: {people.height}</h1>
+            <h1>Hair Color: {people.hair_color}</h1>
+            <h1>Skin Color: {people.skin_color}</h1>
 
         </div>
     )

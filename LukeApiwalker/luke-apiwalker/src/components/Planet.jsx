@@ -1,32 +1,46 @@
+import React from 'react'
 import axios from 'axios';
 import { useEffect } from 'react';
 import  {useState} from 'react';
 
-import { useParams } from 'react-router-dom';
 
 
-const Planet = props => {
+function Planets ({id}) {
+    const [planets,setPlanets] = useState(null);
     
-    const {planet} = useParams();
+    //const {people} = useParams();
+    
+
+    useEffect(() =>{
+        //axios gets the data
+        axios.get("https://swapi.dev/api/Planets/" + id  )
+        //then what to do after it gets the data,function
+        .then(res => setPlanets(res.data));
+    
+        
+    },[id])
+
+    if (planets == null){
+        return "Loading.";
+    }
+    
     
     
     return(
         <div>
-            <>
+            <h1>Luke Apiwalker</h1>
+            <p>Planet page</p>
             
-            {
-                <>
-                    <h1>Planet {planet.name}</h1>
-                    <h1>Climate: {planet.climate}</h1>
-                    <h1>Surface Water: {planet.surface_water}</h1>
-                    <h1>Population: {planet.population}</h1>
-                </> 
-            }
-            
-            </>
-                
+
+            <p>Planet: {planets.name}</p>
+            <p>Climate: {planets.climate}</p>
+            <p>Terrain: {planets.terrain}</p>
+            <p>Surface Water: {planets.surface}</p>
+            <p>Population: {planets.population}</p>
+
         </div>
     )
-}
+};
 
-export default Planet;
+export default Planets;
+
