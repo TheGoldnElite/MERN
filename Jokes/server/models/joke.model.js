@@ -4,8 +4,14 @@ const mongoose = require('mongoose');
 //we make our model
 const JokeSchema = new mongoose.Schema({
     //id,setup,punchine,created at
-    setup: String,
-    punchline: String
+    setup: {
+        type:String,
+        minLength:[10,"Setup needs to be at least 10 characters long"]
+    },
+    punchline: {
+        type:String,
+        minLength:[3,"Punchline needs to be at least 3 characters long"]
+    }
 });
 
 //finalize setting up the model

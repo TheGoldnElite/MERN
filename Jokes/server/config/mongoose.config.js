@@ -2,7 +2,7 @@
 const mongoose = require('mongoose');
 
 //we need to connect to our database
-mongoose.connect("mongodb://localhost/jokes_schema", {
+mongoose.connect("mongodb://127.0.0.1/JokeSchema", {
     useNewUrlParser:true,
     useUnifiedTopology:true
 })

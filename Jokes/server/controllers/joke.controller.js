@@ -24,6 +24,7 @@ module.exports.findOneJoke = (req,res) => {
 
 //read all
 module.exports.findAllJoke = (req,res) => {
+    console.log("find all")
     Joke.find()
         .then(allJokes => res.json(allJokes))
         .catch(err => res.json({message:"something went wrong when finding all jokes",
