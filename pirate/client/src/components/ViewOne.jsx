@@ -39,3 +39,12 @@ const ViewOne = props => {
 
 
 export default ViewOne;
+
+
+
+const handleDelete = id => {
+    axios.delete("http://localhost:8000/api/pets/delete/" + id)
+        .then(() => console.log("pet adopted")
+        )
+        .catch(err => console.log("issue adopting pet",err))
+}

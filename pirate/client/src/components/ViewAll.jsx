@@ -6,15 +6,15 @@ import { Link } from "react-router-dom";
 
 const ViewAll = props => {
     const [pirates,setPirate] = useState(null);
-    const [update,setUpdate] = useState(false);
+    
     useEffect(()=>{
         axios.get("http://localhost:8000/api/pirates")
             .then(res => setPirate(res.data))
             .catch(err => console.log(err))
-    },[update])
+    },[])
     const handleDelete = id => {
         axios.delete("http://localhost:8000/api/pirates/delete/" +id)
-            .then(() => setUpdate(!update))
+            .then(() => console.log("pirate deleted")
             .catch(err => console.log("issue deleting the pirate", err))
     }
 
